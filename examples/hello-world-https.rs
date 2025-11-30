@@ -29,7 +29,7 @@ async fn main() {
 
     if use_tls {
         let tls = rustls_helpers::get_tlsacceptor_from_pem_data(CERT_DATA, KEY_DATA).unwrap();
-        acceptor = acceptor.with_tls(tls);
+        acceptor = acceptor.with_tls(tls, false);
     }
 
     loop {

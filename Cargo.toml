@@ -11,21 +11,22 @@ exclude = ["examples/certs"]
 
 [features]
 default = ["rustls_helpers", "aws_lc_rs", "tls12"]
-rustls_helpers = ["tokio/fs"]
+rustls_helpers = ["tokio/fs", "dep:rustls-pki-types"]
 aws_lc_rs = ["tokio-rustls/aws_lc_rs"]
 ring = ["tokio-rustls/ring"]
 tls12 = ["tokio-rustls/tls12"]
 
 [dependencies]
+http-body-util = "0.1.3"
 # Will figure out how to handle http1 vs. http2 later
-hyper = { version = "1.5.0", features = ["server", "http1"] }
-hyper-util = { version = "0.1.9", features = ["tokio"] }
-rustls-pki-types = "1.10.0"
-thiserror = "1.0.63"
-tokio = { version = "1.40.0", features = ["net"] }
-tokio-rustls = { version = "0.26.0", default-features = false }
+hyper = { version = "1.8.1", features = ["server", "http1"] }
+hyper-util = { version = "0.1.18", features = ["tokio"] }
+rustls-pki-types = { version = "1.13.1", optional = true }
+thiserror = "2.0.17"
+tokio = { version = "1.48.0", features = ["net", "io-util"] }
+tokio-rustls = { version = "0.26.4", default-features = false }
 
 [dev-dependencies]
-http-body-util = "0.1.2"
-hyper = { version = "1.4.1", features = ["http1"] }
-tokio = { version = "1.40.0", features = ["rt", "macros"] }
+http-body-util = "0.1.3"
+hyper = { version = "1.8.1", features = ["http1"] }
+tokio = { version = "1.48.0", features = ["rt", "macros"] }
